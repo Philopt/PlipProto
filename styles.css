@@ -28,12 +28,15 @@
 html,
 body {
   margin: 0;
+  width: 100%;
   min-height: 100%;
+  overflow: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
 body {
+  width: 100vw;
   min-height: 100svh;
   min-height: 100dvh;
   display: grid;
@@ -64,12 +67,16 @@ body::before {
 }
 
 .prelude-shell {
-  width: 100%;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
   height: 100dvh;
   min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: 12px;
+  padding: 14px;
+  overflow: hidden;
+  touch-action: manipulation;
 }
 
 .stage-viewport {

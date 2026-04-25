@@ -16,6 +16,7 @@ const MENU_RENAME_RESPONSE =
 
 const STAGE_WIDTH = 1100;
 const STAGE_HEIGHT = 825;
+const STAGE_SAFE_MARGIN = 32;
 const AUDIO_TARGET_VOLUME = 0.72;
 const AUDIO_FADE_MS = 2800;
 const AUDIO_END_FADE_MS = 3200;
@@ -64,10 +65,16 @@ function updateStageScale() {
   const verticalPadding =
     Number.parseFloat(shellStyles.paddingTop) + Number.parseFloat(shellStyles.paddingBottom);
 
-  const availableWidth = Math.max(0, preludeShellEl.clientWidth - horizontalPadding);
-  const availableHeight = Math.max(0, preludeShellEl.clientHeight - verticalPadding);
+  const viewportWidth = window.visualViewport?.width || window.innerWidth || preludeShellEl.clientWidth;
+  const viewportHeight = window.visualViewport?.height || window.innerHeight || preludeShellEl.clientHeight;
+  const availableWidth = Math.max(0, viewportWidth - horizontalPadding);
+  const availableHeight = Math.max(0, viewportHeight - verticalPadding);
 
-  let stageScale = Math.min(availableWidth / STAGE_WIDTH, availableHeight / STAGE_HEIGHT, 1);
+  let stageScale = Math.min(
+    availableWidth / (STAGE_WIDTH + STAGE_SAFE_MARGIN),
+    availableHeight / (STAGE_HEIGHT + STAGE_SAFE_MARGIN),
+    1,
+  );
 
   if (!Number.isFinite(stageScale) || stageScale <= 0) {
     stageScale = 1;
