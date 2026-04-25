@@ -29,6 +29,8 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -429,6 +431,14 @@ body::before {
     0 2px 0 rgba(0, 0, 0, 0.72),
     2px 2px 0 rgba(0, 0, 0, 0.74);
   -webkit-font-smoothing: none;
+}
+
+.type-char {
+  visibility: hidden;
+}
+
+.type-char.is-visible {
+  visibility: visible;
 }
 
 .dialogue-continue {

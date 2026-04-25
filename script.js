@@ -120,13 +120,21 @@ async function typeInto(element, text, runId, baseDelay) {
     return activeRun === runId;
   }
 
-  for (const character of text) {
+  const characterEls = [...text].map((character) => {
+    const characterEl = document.createElement("span");
+    characterEl.className = "type-char";
+    characterEl.textContent = character;
+    element.append(characterEl);
+    return characterEl;
+  });
+
+  for (const characterEl of characterEls) {
     if (activeRun !== runId) {
       return false;
     }
 
-    element.textContent += character;
-    await wait(characterDelay(character, baseDelay));
+    characterEl.classList.add("is-visible");
+    await wait(characterDelay(characterEl.textContent, baseDelay));
   }
 
   return activeRun === runId;
@@ -470,13 +478,9 @@ async function openDialogue(text, runId, showOptions = false, showOptionsImmedia
 
   await nextFrame();
 
-  const shellRect = dialogueShellEl.getBoundingClientRect();
-  const panelRect = dialoguePanelEl.getBoundingClientRect();
-  const textRect = dialogueTextEl.getBoundingClientRect();
-
-  dialogueShellEl.style.width = `${Math.ceil(shellRect.width)}px`;
-  dialoguePanelEl.style.minHeight = `${Math.ceil(panelRect.height)}px`;
-  dialogueTextEl.style.minHeight = `${Math.ceil(textRect.height)}px`;
+  dialogueShellEl.style.width = `${Math.ceil(dialogueShellEl.offsetWidth)}px`;
+  dialoguePanelEl.style.minHeight = `${Math.ceil(dialoguePanelEl.offsetHeight)}px`;
+  dialogueTextEl.style.minHeight = `${Math.ceil(dialogueTextEl.offsetHeight)}px`;
 
   dialogueTextEl.textContent = "";
 
