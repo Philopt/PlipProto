@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prelude: Happiness Hill</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <audio id="prelude-audio" preload="auto" loop>
+      <source src="./Happiness Hill Prelude.mp3" type="audio/mpeg" />
+    </audio>
+
+    <main class="prelude-shell">
+      <div class="stage-viewport" id="stage-viewport">
+        <section class="scene-frame" id="scene-frame" aria-label="Prelude scene for Happiness Hill">
+          <img class="scene-image day" src="./hillday.jpg" alt="" aria-hidden="true" />
+          <img class="scene-image night" id="night-image" src="./hillnight.jpg" alt="" aria-hidden="true" />
+          <div class="scene-overlay" aria-hidden="true"></div>
+
+          <section class="start-shell" id="start-shell" aria-live="polite">
+            <button class="start-button gold-pixel" id="start-button" type="button">Start Prelude</button>
+          </section>
+
+          <section class="title-card" id="title-card" aria-live="polite"></section>
+          <section class="poem-card" id="poem-card" aria-live="polite"></section>
+
+          <section class="dialogue-shell" id="dialogue-shell" aria-live="polite" aria-hidden="true">
+            <div class="dialogue-panel">
+              <p class="dialogue-text" id="dialogue-text"></p>
+              <p class="dialogue-continue hidden" id="dialogue-continue" aria-hidden="true">▼</p>
+              <div
+                class="dialogue-options hidden"
+                id="dialogue-options"
+                role="listbox"
+                aria-label="Choose the hill's new name"
+              ></div>
+            </div>
+          </section>
+
+          <section class="end-card" id="end-card" aria-live="polite" aria-hidden="true">
+            <p class="end-card-text gold-pixel">Prelude Over</p>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
